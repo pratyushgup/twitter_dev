@@ -15,6 +15,8 @@ app.listen(3000,async ()=>{
     // });
     // const tweets = await Tweet.find({userEmail:'a@b.com'});
     const repo = new TweetRepository();
-    const tweet = await repo.getAll(0,4);
-    console.log(tweet[0].contentWithEmail);
-})   
+    const tweet = await repo.create({content:'new tweet with hook is here and what else tell'})
+    console.log(tweet);
+    // const tweet = await repo.getAll(0,4);
+    // console.log(tweet[0].contentWithEmail);
+})    
