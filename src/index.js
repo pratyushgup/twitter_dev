@@ -1,14 +1,18 @@
 const express = require('express');
 const connect = require('./config/database');
+const bodyParser = require('body-parser');
+const apiRoutes = require('./routes/index');
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
-const TweetService = require('./services/tweet-service');
+app.use('/api',apiRoutes);
+
 
 app.listen(3000,async ()=>{
+
     console.log('Server Started');
     await connect();
     console.log('Mongo db connected');
-    let service = new TweetService();
-    const tweet = await service.create({content:'This is capital #DELHI #BILLI #HILLI'});
-    console.log(tweet);
+    
 })    
